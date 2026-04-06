@@ -11,140 +11,235 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h1>엘루이 업무 포털</h1>
+                <i data-lucide="blocks"></i>
+                <h2>엘루이<br>업무 포털</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="#home" class="nav-item active">
+                <a href="#" class="sidebar-nav-item active" data-section="property">
                     <i data-lucide="home"></i>
-                    <span>홈</span>
-                </a>
-                <a href="#property" class="nav-item">
-                    <i data-lucide="building-2"></i>
                     <span>매물관리</span>
                 </a>
-                <a href="#contract" class="nav-item">
+                <a href="#" class="sidebar-nav-item" data-section="contract">
                     <i data-lucide="file-text"></i>
-                    <span>계약</span>
-                </a>
-                <a href="#meeting" class="nav-item">
-                    <i data-lucide="calendar-days"></i>
-                    <span>회의록</span>
-                </a>
-                <a href="#admin" class="nav-item">
-                    <i data-lucide="settings"></i>
-                    <span>관리자</span>
-                </a>
-                <a href="#login" class="nav-item">
-                    <i data-lucide="log-in"></i>
-                    <span>로그인</span>
+                    <span>계약정산</span>
                 </a>
             </nav>
-            <div class="sidebar-footer">
-                <button id="theme-toggle">다크 모드</button>
+            <div class="sidebar-status">
+                <div class="status-header">
+                    <h4>오늘의 현황</h4>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-item">
+                        <span>총 매물</span>
+                        <strong id="status-total-properties">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>거래가능</span>
+                        <strong id="status-available-properties">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>오늘 등록</span>
+                        <strong id="status-today-registered">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>이달 총 수수료</span>
+                        <strong id="status-monthly-commission">0 원</strong>
+                    </div>
+                </div>
             </div>
         </aside>
         <main class="main-content">
-            <header class="main-header">
-                <div class="search-bar">
-                    <input type="text" placeholder="검색...">
-                    <button>검색</button>
+            <section id="property" class="content-section active">
+                <header class="main-header">
+                    <h1><i data-lucide="home"></i> 매물관리</h1>
+                </header>
+                <div class="content">
+                    <div class="tab-nav">
+                        <button class="tab-button" data-tab="property-search">매물 검색</button>
+                        <button class="tab-button" data-tab="property-registration">매물 등록</button>
+                        <button class="tab-button active" data-tab="owner-management">소유자 관리</button>
+                    </div>
+
+                    <div id="property-search" class="tab-content">
+                         <h3>🔍 매물 검색</h3>
+                        <div class="card form-layout">
+                            <form id="property-search-form">
+                                <div class="grid-3">
+                                    <div class="form-group"><label>주소</label><input type="text" name="p_search_address"></div>
+                                    <div class="form-group"><label>담당자</label><input type="text" name="p_search_manager"></div>
+                                    <div class="form-group"><label>거래상태</label><select name="p_search_status"><option value="">전체</option><option>거래가능</option><option>거래중</option><option>거래완료</option></select></div>
+                                </div>
+                                <button type="submit" class="button-primary full-width">검색하기</button>
+                            </form>
+                        </div>
+
+                        <div class="results-area card" style="margin-top: 1.5rem;">
+                            <p id="property-results-caption">총 0개의 매물이 있습니다.</p>
+                            <div id="property-list">
+                                <!-- 매물 목록이 여기에 동적으로 추가됩니다. -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="property-registration" class="tab-content">
+                        <h3>📝 신규 매물 등록</h3>
+                        <div class="card form-layout">
+                            <form id="property-registration-form">
+                                <div class="form-group">
+                                    <label>주소</label>
+                                    <input type="text" name="p_reg_address" placeholder="예: 서울시 강남구 역삼동 123-45">
+                                </div>
+                                <hr>
+                                <div class="grid-3">
+                                    <div class="form-group">
+                                        <label>매물 유형</label>
+                                        <select name="p_reg_property_type"><option>아파트</option><option>빌라</option><option>오피스텔</option><option>단독주택</option></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>거래 유형</label>
+                                        <select name="p_reg_transaction_type"><option>매매</option><option>전세</option><option>월세</option></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>전용 면적(m²)</label>
+                                        <input type="number" name="p_reg_area">
+                                    </div>
+                                </div>
+                                <div class="grid-3">
+                                    <div class="form-group"><label>매매가 / 보증금 (만원)</label><input type="number" name="p_reg_price"></div>
+                                    <div class="form-group"><label>월세 (만원)</label><input type="number" name="p_reg_rent"></div>
+                                    <div class="form-group"><label>관리비 (원)</label><input type="number" name="p_reg_m_fee"></div>
+                                </div>
+                                <hr>
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>소유자</label>
+                                        <select name="p_reg_owner"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>담당자</label>
+                                        <select name="p_reg_manager"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>상세설명 및 메모</label>
+                                    <textarea name="p_reg_description" rows="4"></textarea>
+                                </div>
+                                <button type="submit" class="button-primary full-width">매물 등록하기</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="owner-management" class="tab-content active">
+                        <h3>👥 소유자 관리</h3>
+                        <div class="grid-2-layout">
+                            <div class="column">
+                                <div class="card">
+                                    <h4>신규 소유자 등록</h4>
+                                    <form id="add-owner-form" class="form-layout">
+                                        <div class="form-group"><label>이름</label><input type="text" name="owner_name"></div>
+                                        <div class="form-group"><label>연락처</label><input type="text" name="owner_contact"></div>
+                                        <button type="submit" class="button-primary full-width">소유자 추가</button>
+                                    </form>
+                                </div>
+                                <div class="card" style="margin-top: 1.5rem;">
+                                    <h4>소유자 목록</h4>
+                                    <div id="owner-list"></div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="card">
+                                    <h4>보유 매물</h4>
+                                    <div id="owner-properties-list">
+                                        <p>소유자를 선택하면 보유 매물이 표시됩니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="user-profile">
-                    <span>이응찬팀장</span>
-                    <img src="https-via-placeholder-com-40" alt="User Avatar">
+            </section>
+
+            <section id="contract" class="content-section">
+                 <header class="main-header">
+                    <h1><i data-lucide="file-text"></i> 계약정산</h1>
+                </header>
+                <div class="content">
+                    <div class="tab-nav">
+                        <button class="tab-button active" data-tab="settlement-view">정산내역 조회/수정</button>
+                        <button class="tab-button" data-tab="settlement-entry">정산내역 입력</button>
+                        <button class="tab-button" data-tab="monthly-stats">월별 통계</button>
+                        <button class="tab-button" data-tab="team-stats">팀원별 통계</button>
+                    </div>
+
+                    <div id="settlement-view" class="tab-content active">
+                        <h3>📋 정산내역 조회/수정</h3>
+                        <div class="card">
+                            <div class="list-header">
+                                <div>계약일</div>
+                                <div>주소</div>
+                                <div>유형</div>
+                                <div>수수료</div>
+                                <div>담당자</div>
+                                <div>작업</div>
+                            </div>
+                            <div id="settlement-list-container"></div>
+                        </div>
+                    </div>
+
+                    <div id="settlement-entry" class="tab-content">
+                        <h3>✍️ 정산내역 입력</h3>
+                        <div class="card form-layout">
+                            <form id="settlement-entry-form">
+                                <div class="grid-2">
+                                    <div class="form-group"><label>계약일</label><input type="date" name="contract_date"></div>
+                                    <div class="form-group"><label>주소</label><input type="text" name="address"></div>
+                                </div>
+                                <div class="grid-3">
+                                    <div class="form-group">
+                                        <label>계약 종류</label>
+                                        <select name="contract_type"><option>매매</option><option>전세</option><option>월세</option></select>
+                                    </div>
+                                    <div class="form-group"><label>수수료 (만원)</label><input type="number" name="commission"></div>
+                                    <div class="form-group">
+                                        <label>담당자</label>
+                                        <select name="manager"></select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="button-primary full-width">저장하기</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="monthly-stats" class="tab-content">
+                        <h3>📊 월별 통계</h3>
+                        <div class="card">
+                            <form id="monthly-stats-form" class="form-layout-inline">
+                                <div class="form-group"><label>조회 년도</label><select name="stats_year"></select></div>
+                                <div class="form-group"><label>조회 월</label><select name="stats_month"></select></div>
+                                <button type="submit" class="button-primary">통계 조회</button>
+                            </form>
+                            <div id="stats-summary-container" class="grid-3" style="margin-top: 1.5rem;"></div>
+                            <div id="monthly-stats-table-container" style="margin-top: 1.5rem;"></div>
+                        </div>
+                    </div>
+
+                    <div id="team-stats" class="tab-content">
+                        <h3>🏆 팀원별 실적 순위</h3>
+                         <div class="card">
+                            <form id="team-stats-form" class="form-layout-inline">
+                               <div class="form-group"><label>조회 년도</label><select name="team_stats_year"></select></div>
+                                <div class="form-group"><label>조회 월</label><select name="team_stats_month"></select></div>
+                                <button type="submit" class="button-primary">순위 조회</button>
+                            </form>
+                            <div id="leaderboard" style="margin-top: 1.5rem;"></div>
+                        </div>
+                    </div>
                 </div>
-            </header>
-            <div class="content">
-                <section id="home" class="content-section">
-                    <h2>
-                        <i data-lucide="link"></i> 내부 업무망 & <i data-lucide="globe"></i> 부동산 필수 사이트
-                    </h2>
-                    <a href="https://docs.google.com/spreadsheets/d/11WZhFnPPIduKVSy3UG0-L1BrXRdddCBhzQLZGMVBSXc/" target="_blank" class="link-button full-width">📊 오피콜 시트 (마스터)</a>
-                    
-                    <div class="link-grid">
-                        <a href="https://land.naver.com" target="_blank" class="link-button">🟢 네이버 부동산</a>
-                        <a href="https://www.gov.kr" target="_blank" class="link-button">🏛️ 정부24 (건축물대장)</a>
-                        <a href="http://www.iros.go.kr" target="_blank" class="link-button">📄 인터넷 등기소</a>
-                        <a href="https://www.gongsilclub.com" target="_blank" class="link-button">🏢 공실클럽</a>
-                        <a href="https://seereal.lh.or.kr" target="_blank" class="link-button">🗺️ 씨리얼 (부동산정보)</a>
-                        <a href="https://www.coone.co.kr" target="_blank" class="link-button">🔥 도시가스 (코원에너지)</a>
-                        <a href="https://www.law.go.kr" target="_blank" class="link-button">⚖️ 법제처 (국가법령)</a>
-                        <a href="https://www.valueupmap.com" target="_blank" class="link-button">📍 밸류맵</a>
-                        <a href="https://kbland.kr" target="_blank" class="link-button">🏦 KB부동산</a>
-                        <a href="https.://www.rtech.or.kr" target="_blank" class="link-button">📈 부동산테크</a>
-                        <a href="https://www.renthome.go.kr" target="_blank" class="link-button">🏘️ 렌트홈</a>
-                        <a href="https://xn--989a00af8jnslv3dba.com/" target="_blank" class="link-button">🧮 부동산 계산기</a>
-                        <a href="https://www.hometax.go.kr" target="_blank" class="link-button">💰 홈택스 (기준시가)</a>
-                        <a href="https://www.realtyprice.kr" target="_blank" class="link-button">🔔 공시가격 알리미</a>
-                        <a href="https://khig.khug.or.kr/websquare/popup.html?w2xPath=/cg/ae/CGAE034P02.xml&popupID=help&idx=idx10_16146745922339600.17851819347&w2xHome=/login/&w2xDocumentRoot=" target="_blank" class="link-button">🛡️ HUG 보증보험 확인</a>
-                    </div>
-                </section>
-
-                <section id="property" class="content-section">
-                    <h2>매물관리</h2>
-                    <div class="placeholder-card">
-                        <p>매물 리스트 및 관리 화면입니다.</p>
-                    </div>
-                </section>
-
-                <section id="contract" class="content-section">
-                    <h2>계약</h2>
-                    <div class="placeholder-card">
-                        <p>계약서 작성 및 관리 화면입니다.</p>
-                    </div>
-                </section>
-
-                <section id="meeting" class="content-section">
-                    <h2>회의록</h2>
-                    <div class="placeholder-card">
-                        <p>주간 회의록 및 기록 관리 화면입니다.</p>
-                    </div>
-                </section>
-
-                <section id="admin" class="content-section">
-                    <h2>관리자</h2>
-                    <div class="placeholder-card">
-                        <p>시스템 설정 및 권한 관리 화면입니다.</p>
-                    </div>
-                </section>
-
-                <section id="login" class="content-section">
-                    <h2>로그인</h2>
-                    <div class="placeholder-card">
-                        <form id="login-form">
-                            <input type="text" id="login-username" placeholder="사용자 이름" required>
-                            <input type="password" id="login-password" placeholder="비밀번호" required>
-                            <button type="submit">로그인</button>
-                        </form>
-                        <p>계정이 없으신가요? <a href="#" id="show-signup">회원가입</a></p>
-                    </div>
-                </section>
-
-                <section id="signup" class="content-section" style="display: none;">
-                    <h2>회원가입</h2>
-                    <div class="placeholder-card">
-                        <form id="signup-form">
-                            <input type="text" id="signup-username" placeholder="사용자 이름" required>
-                            <input type="password" id="signup-password" placeholder="비밀번호" required>
-                            <input type="password" id="signup-password-confirm" placeholder="비밀번호 확인" required>
-                            <button type="submit">회원가입</button>
-                        </form>
-                        <p>이미 계정이 있으신가요? <a href="#" id="show-login">로그인</a></p>
-                    </div>
-                </section>
-            </div>
+            </section>
         </main>
     </div>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 엘루이. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script src="main.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
