@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엘루이 업무 포털</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>엘루이 업무 포털</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#home" class="nav-item active">
+                    <i data-lucide="home"></i>
+                    <span>홈</span>
+                </a>
+                <a href="#property" class="nav-item">
+                    <i data-lucide="building-2"></i>
+                    <span>매물관리</span>
+                </a>
+                <a href="#contract" class="nav-item">
+                    <i data-lucide="file-text"></i>
+                    <span>계약</span>
+                </a>
+                <a href="#meeting" class="nav-item">
+                    <i data-lucide="calendar-days"></i>
+                    <span>회의록</span>
+                </a>
+                <a href="#admin" class="nav-item">
+                    <i data-lucide="settings"></i>
+                    <span>관리자</span>
+                </a>
+                <a href="#login" class="nav-item">
+                    <i data-lucide="log-in"></i>
+                    <span>로그인</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="theme-toggle">다크 모드</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <div class="search-bar">
+                    <input type="text" placeholder="검색...">
+                    <button>검색</button>
+                </div>
+                <div class="user-profile">
+                    <span>이응찬팀장</span>
+                    <img src="https-via-placeholder-com-40" alt="User Avatar">
+                </div>
+            </header>
+            <div class="content">
+                <section id="home" class="content-section">
+                    <h2>
+                        <i data-lucide="link"></i> 내부 업무망 & <i data-lucide="globe"></i> 부동산 필수 사이트
+                    </h2>
+                    <a href="https://docs.google.com/spreadsheets/d/11WZhFnPPIduKVSy3UG0-L1BrXRdddCBhzQLZGMVBSXc/" target="_blank" class="link-button full-width">📊 오피콜 시트 (마스터)</a>
+                    
+                    <div class="link-grid">
+                        <a href="https://land.naver.com" target="_blank" class="link-button">🟢 네이버 부동산</a>
+                        <a href="https://www.gov.kr" target="_blank" class="link-button">🏛️ 정부24 (건축물대장)</a>
+                        <a href="http://www.iros.go.kr" target="_blank" class="link-button">📄 인터넷 등기소</a>
+                        <a href="https://www.gongsilclub.com" target="_blank" class="link-button">🏢 공실클럽</a>
+                        <a href="https://seereal.lh.or.kr" target="_blank" class="link-button">🗺️ 씨리얼 (부동산정보)</a>
+                        <a href="https://www.coone.co.kr" target="_blank" class="link-button">🔥 도시가스 (코원에너지)</a>
+                        <a href="https://www.law.go.kr" target="_blank" class="link-button">⚖️ 법제처 (국가법령)</a>
+                        <a href="https://www.valueupmap.com" target="_blank" class="link-button">📍 밸류맵</a>
+                        <a href="https://kbland.kr" target="_blank" class="link-button">🏦 KB부동산</a>
+                        <a href="https.://www.rtech.or.kr" target="_blank" class="link-button">📈 부동산테크</a>
+                        <a href="https://www.renthome.go.kr" target="_blank" class="link-button">🏘️ 렌트홈</a>
+                        <a href="https://xn--989a00af8jnslv3dba.com/" target="_blank" class="link-button">🧮 부동산 계산기</a>
+                        <a href="https://www.hometax.go.kr" target="_blank" class="link-button">💰 홈택스 (기준시가)</a>
+                        <a href="https://www.realtyprice.kr" target="_blank" class="link-button">🔔 공시가격 알리미</a>
+                        <a href="https://khig.khug.or.kr/websquare/popup.html?w2xPath=/cg/ae/CGAE034P02.xml&popupID=help&idx=idx10_16146745922339600.17851819347&w2xHome=/login/&w2xDocumentRoot=" target="_blank" class="link-button">🛡️ HUG 보증보험 확인</a>
+                    </div>
+                </section>
+
+                <section id="property" class="content-section">
+                    <h2>매물관리</h2>
+                    <div class="placeholder-card">
+                        <p>매물 리스트 및 관리 화면입니다.</p>
+                    </div>
+                </section>
+
+                <section id="contract" class="content-section">
+                    <h2>계약</h2>
+                    <div class="placeholder-card">
+                        <p>계약서 작성 및 관리 화면입니다.</p>
+                    </div>
+                </section>
+
+                <section id="meeting" class="content-section">
+                    <h2>회의록</h2>
+                    <div class="placeholder-card">
+                        <p>주간 회의록 및 기록 관리 화면입니다.</p>
+                    </div>
+                </section>
+
+                <section id="admin" class="content-section">
+                    <h2>관리자</h2>
+                    <div class="placeholder-card">
+                        <p>시스템 설정 및 권한 관리 화면입니다.</p>
+                    </div>
+                </section>
+
+                <section id="login" class="content-section">
+                    <h2>로그인</h2>
+                    <div class="placeholder-card">
+                        <form id="login-form">
+                            <input type="text" id="login-username" placeholder="사용자 이름" required>
+                            <input type="password" id="login-password" placeholder="비밀번호" required>
+                            <button type="submit">로그인</button>
+                        </form>
+                        <p>계정이 없으신가요? <a href="#" id="show-signup">회원가입</a></p>
+                    </div>
+                </section>
+
+                <section id="signup" class="content-section" style="display: none;">
+                    <h2>회원가입</h2>
+                    <div class="placeholder-card">
+                        <form id="signup-form">
+                            <input type="text" id="signup-username" placeholder="사용자 이름" required>
+                            <input type="password" id="signup-password" placeholder="비밀번호" required>
+                            <input type="password" id="signup-password-confirm" placeholder="비밀번호 확인" required>
+                            <button type="submit">회원가입</button>
+                        </form>
+                        <p>이미 계정이 있으신가요? <a href="#" id="show-login">로그인</a></p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 엘루이. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
