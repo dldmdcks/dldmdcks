@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계약정산 - 엘루이 업무 포털</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i data-lucide="blocks"></i>
+                <h2>엘루이<br>업무 포털</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="1_오피콜_및_매물관리.html" class="sidebar-nav-item">
+                    <i data-lucide="home"></i>
+                    <span>매물관리</span>
+                </a>
+                <a href="2_계약보고_시스템.html" class="sidebar-nav-item active">
+                    <i data-lucide="file-text"></i>
+                    <span>계약정산</span>
+                </a>
+            </nav>
+            <div class="sidebar-status">
+                <div class="status-header">
+                    <h4>오늘의 현황</h4>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-item">
+                        <span>총 매물</span>
+                        <strong id="status-total-properties">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>거래가능</span>
+                        <strong id="status-available-properties">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>오늘 등록</span>
+                        <strong id="status-today-registered">0</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>이달 총 수수료</span>
+                        <strong id="status-monthly-commission">0 원</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <section id="contract" class="content-section active">
+                 <header class="main-header">
+                    <h1><i data-lucide="file-text"></i> 계약정산</h1>
+                </header>
+                <div class="content">
+                    <div class="tab-nav">
+                        <button class="tab-button active" data-tab="settlement-view">정산내역 조회/수정</button>
+                        <button class="tab-button" data-tab="settlement-entry">정산내역 입력</button>
+                        <button class="tab-button" data-tab="monthly-stats">월별 통계</button>
+                        <button class="tab-button" data-tab="team-stats">팀원별 통계</button>
+                    </div>
+
+                    <div id="settlement-view" class="tab-content active">
+                        <h3>📋 정산내역 조회/수정</h3>
+                        <div class="card">
+                            <div class="list-header">
+                                <div>계약일</div>
+                                <div>주소</div>
+                                <div>유형</div>
+                                <div>수수료</div>
+                                <div>담당자</div>
+                                <div>작업</div>
+                            </div>
+                            <div id="settlement-list-container"></div>
+                        </div>
+                    </div>
+
+                    <div id="settlement-entry" class="tab-content">
+                        <h3>✍️ 정산내역 입력</h3>
+                        <div class="card form-layout">
+                            <form id="settlement-entry-form">
+                                <div class="grid-2">
+                                    <div class="form-group"><label>계약일</label><input type="date" name="contract_date"></div>
+                                    <div class="form-group"><label>주소</label><input type="text" name="address"></div>
+                                </div>
+                                <div class="grid-3">
+                                    <div class="form-group">
+                                        <label>계약 종류</label>
+                                        <select name="contract_type"><option>매매</option><option>전세</option><option>월세</option></select>
+                                    </div>
+                                    <div class="form-group"><label>수수료 (만원)</label><input type="number" name="commission"></div>
+                                    <div class="form-group">
+                                        <label>담당자</label>
+                                        <select name="manager"></select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="button-primary full-width">저장하기</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="monthly-stats" class="tab-content">
+                        <h3>📊 월별 통계</h3>
+                        <div class="card">
+                            <form id="monthly-stats-form" class="form-layout-inline">
+                                <div class="form-group"><label>조회 년도</label><select name="stats_year"></select></div>
+                                <div class="form-group"><label>조회 월</label><select name="stats_month"></select></div>
+                                <button type="submit" class="button-primary">통계 조회</button>
+                            </form>
+                            <div id="stats-summary-container" class="grid-3" style="margin-top: 1.5rem;"></div>
+                            <div id="monthly-stats-table-container" style="margin-top: 1.5rem;"></div>
+                        </div>
+                    </div>
+
+                    <div id="team-stats" class="tab-content">
+                        <h3>🏆 팀원별 실적 순위</h3>
+                         <div class="card">
+                            <form id="team-stats-form" class="form-layout-inline">
+                               <div class="form-group"><label>조회 년도</label><select name="team_stats_year"></select></div>
+                                <div class="form-group"><label>조회 월</label><select name="team_stats_month"></select></div>
+                                <button type="submit" class="button-primary">순위 조회</button>
+                            </form>
+                            <div id="leaderboard" style="margin-top: 1.5rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="contract.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
