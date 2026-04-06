@@ -1,17 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const port = 3000;
+
+// Serve static files from the root directory
+app.use(express.static(path.join(__dirname, '')));
 
 app.use(bodyParser.json());
 
 // 임시 사용자 데이터 저장소
 const users = [];
-
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
 
 // 회원가입 엔드포인트
 app.post('/signup', (req, res) => {
