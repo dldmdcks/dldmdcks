@@ -1,0 +1,162 @@
+<!-- chore: trigger redeploy -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매물관리 - 엘루이 업무 포털</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <strong>이용천팀장</strong>
+                <p>보유 토큰: 127.78</p>
+                <button class="logout-button">로그아웃</button>
+            </div>
+            <nav class="sidebar-nav">
+                <p class="menu-title">메뉴 이동</p>
+                <a href="index.html" class="sidebar-nav-item">
+                    <i data-lucide="home"></i>
+                    <span>홈</span>
+                </a>
+                <a href="property.html" class="sidebar-nav-item active">
+                    <i data-lucide="database"></i>
+                    <span>매물/DB</span>
+                </a>
+                <a href="contract.html" class="sidebar-nav-item">
+                    <i data-lucide="file-text"></i>
+                    <span>계약정산</span>
+                </a>
+                <a href="#" class="sidebar-nav-item">
+                    <i data-lucide="book-open"></i>
+                    <span>회의록</span>
+                </a>
+                <a href="#" class="sidebar-nav-item">
+                    <i data-lucide="gem"></i>
+                    <span>경험치북</span>
+                </a>
+                <a href="#" class="sidebar-nav-item">
+                    <i data-lucide="user-cog"></i>
+                    <span>관리자</span>
+                </a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <section id="property" class="content-section active">
+                <header class="main-header">
+                    <h1><i data-lucide="database"></i> 매물/DB</h1>
+                </header>
+                <div class="content">
+                    <div class="tab-nav">
+                        <button class="tab-button" data-tab="property-search">매물 검색</button>
+                        <button class="tab-button" data-tab="property-registration">매물 등록</button>
+                        <button class="tab-button active" data-tab="owner-management">소유자 관리</button>
+                    </div>
+
+                    <div id="property-search" class="tab-content">
+                         <h3>🔍 매물 검색</h3>
+                        <div class="card form-layout">
+                            <form id="property-search-form">
+                                <div class="grid-3">
+                                    <div class="form-group"><label>주소</label><input type="text" name="p_search_address"></div>
+                                    <div class="form-group"><label>담당자</label><input type="text" name="p_search_manager"></div>
+                                    <div class="form-group"><label>거래상태</label><select name="p_search_status"><option value="">전체</option><option>거래가능</option><option>거래중</option><option>거래완료</option></select></div>
+                                </div>
+                                <button type="submit" class="button-primary full-width">검색하기</button>
+                            </form>
+                        </div>
+
+                        <div class="results-area card" style="margin-top: 1.5rem;">
+                            <p id="property-results-caption">총 0개의 매물이 있습니다.</p>
+                            <div id="property-list">
+                                <!-- 매물 목록이 여기에 동적으로 추가됩니다. -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="property-registration" class="tab-content">
+                        <h3>📝 신규 매물 등록</h3>
+                        <div class="card form-layout">
+                            <form id="property-registration-form">
+                                <div class="form-group">
+                                    <label>주소</label>
+                                    <input type="text" name="p_reg_address" placeholder="예: 서울시 강남구 역삼동 123-45">
+                                </div>
+                                <hr>
+                                <div class="grid-3">
+                                    <div class="form-group">
+                                        <label>매물 유형</label>
+                                        <select name="p_reg_property_type"><option>아파트</option><option>빌라</option><option>오피스텔</option><option>단독주택</option></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>거래 유형</label>
+                                        <select name="p_reg_transaction_type"><option>매매</option><option>전세</option><option>월세</option></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>전용 면적(m²)</label>
+                                        <input type="number" name="p_reg_area">
+                                    </div>
+                                </div>
+                                <div class="grid-3">
+                                    <div class="form-group"><label>매매가 / 보증금 (만원)</label><input type="number" name="p_reg_price"></div>
+                                    <div class="form-group"><label>월세 (만원)</label><input type="number" name="p_reg_rent"></div>
+                                    <div class="form-group"><label>관리비 (원)</label><input type="number" name="p_reg_m_fee"></div>
+                                </div>
+                                <hr>
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>소유자</label>
+                                        <select name="p_reg_owner"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>담당자</label>
+                                        <select name="p_reg_manager"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>상세설명 및 메모</label>
+                                    <textarea name="p_reg_description" rows="4"></textarea>
+                                </div>
+                                <button type="submit" class="button-primary full-width">매물 등록하기</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="owner-management" class="tab-content active">
+                        <h3>👥 소유자 관리</h3>
+                        <div class="grid-2-layout">
+                            <div class="column">
+                                <div class="card">
+                                    <h4>신규 소유자 등록</h4>
+                                    <form id="add-owner-form" class="form-layout">
+                                        <div class="form-group"><label>이름</label><input type="text" name="owner_name"></div>
+                                        <div class="form-group"><label>연락처</label><input type="text" name="owner_contact"></div>
+                                        <button type="submit" class="button-primary full-width">소유자 추가</button>
+                                    </form>
+                                </div>
+                                <div class="card" style="margin-top: 1.5rem;">
+                                    <h4>소유자 목록</h4>
+                                    <div id="owner-list"></div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="card">
+                                    <h4>보유 매물</h4>
+                                    <div id="owner-properties-list">
+                                        <p>소유자를 선택하면 보유 매물이 표시됩니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="property.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
