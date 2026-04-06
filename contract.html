@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>계약정산 - 엘루이 업무 포털</title>
+    <title>계약 보고 시스템 - 엘루이 업무 포털</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -11,122 +11,129 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <i data-lucide="blocks"></i>
                 <h2>엘루이<br>업무 포털</h2>
+            </div>
+            <div class="sidebar-user">
+                <p><strong>이용천</strong> 팀장</p>
+                <p>보유 토큰: 127 개</p>
+                <button class="logout-button">로그아웃</button>
             </div>
             <nav class="sidebar-nav">
                 <a href="index.html" class="sidebar-nav-item">
                     <i data-lucide="home"></i>
+                    <span>홈</span>
+                </a>
+                <a href="property.html" class="sidebar-nav-item">
+                    <i data-lucide="building-2"></i>
                     <span>매물관리</span>
                 </a>
                 <a href="contract.html" class="sidebar-nav-item active">
-                    <i data-lucide="file-text"></i>
-                    <span>계약정산</span>
+                    <i data-lucide="file-check"></i>
+                    <span>계약</span>
+                </a>
+                <a href="#" class="sidebar-nav-item">
+                    <i data-lucide="book-user"></i>
+                    <span>회의록</span>
+                </a>
+                <a href="#" class="sidebar-nav-item">
+                    <i data-lucide="shield"></i>
+                    <span>관리자</span>
                 </a>
             </nav>
-            <div class="sidebar-status">
-                <div class="status-header">
-                    <h4>오늘의 현황</h4>
-                    <i data-lucide="chevron-down"></i>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <div class="tab-nav">
+                    <button class="tab-button active" data-tab="confirm-request">✅ 계약 컨펌 요청</button>
+                    <button class="tab-button" data-tab="new-contract-report">⚪️ 신규 계약 보고</button>
+                    <button class="tab-button" data-tab="my-settlement">⚪️ 내 정산</button>
+                    <button class="tab-button" data-tab="dashboard">⚪️ 전사 대시보드</button>
                 </div>
-                <div class="status-content">
-                    <div class="status-item">
-                        <span>총 매물</span>
-                        <strong id="status-total-properties">0</strong>
+            </header>
+            <div class="content">
+                <div id="confirm-request" class="tab-content active">
+                    <div class="page-title">
+                        <h2>계약 컨펌 요청 (입금 전 사전 승인)</h2>
+                        <p>아래 양식을 채워 컨펌을 요청하면, 카카오워크 단톡방으로 즉시 전송됩니다.</p>
                     </div>
-                    <div class="status-item">
-                        <span>거래가능</span>
-                        <strong id="status-available-properties">0</strong>
-                    </div>
-                    <div class="status-item">
-                        <span>오늘 등록</span>
-                        <strong id="status-today-registered">0</strong>
-                    </div>
-                    <div class="status-item">
-                        <span>이달 총 수수료</span>
-                        <strong id="status-monthly-commission">0 원</strong>
+
+                    <div class="card">
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label class="form-label" style="color:red;">🚨 매물 등기 종류 선택</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="property-type" value="multi-family" checked> 구분등기(다세대/오피스텔/아파트 등)</label>
+                                    <label><input type="radio" name="property-type" value="single-family"> 다가구/단독주택</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>🏠 매물 정보</h3>
+                            <div class="grid-3">
+                                <div class="form-group">
+                                    <label for="sido">시/도</label>
+                                    <input type="text" id="sido" name="sido" value="서울특별시">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sigungu">시/군/구</label>
+                                    <input type="text" id="sigungu" name="sigungu" value="송파구">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dong">법정동</label>
+                                    <input type="text" id="dong" name="dong" value="방이동">
+                                </div>
+                            </div>
+                            <div class="grid-3">
+                                <div class="form-group">
+                                    <label for="beonji">번지 (예: 28-2)</label>
+                                    <input type="text" id="beonji" name="beonji" value="28-2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="building-dong">동 (없으면 빈칸)</label>
+                                    <input type="text" id="building-dong" name="building-dong" value="A동">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ho">호수 (숫자만)</label>
+                                    <input type="text" id="ho" name="ho" value="205">
+                                </div>
+                            </div>
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label for="deposit">보증금 (0000 끝나는 원단위)</label>
+                                    <input type="number" id="deposit" name="deposit" value="100000000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rent">월세 (원단위, 없으면 0)</label>
+                                    <input type="number" id="rent" name="rent" value="1000000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>⚖️ 권리 분석 정보</h3>
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label for="priority-repayment">해당연도 최우선 변제금액 (0000 원단위)</label>
+                                    <input type="number" id="priority-repayment" name="priority-repayment" value="55000000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="loan-status">대출유무</label>
+                                    <select id="loan-status" name="loan-status"><option>무</option><option>유</option></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">특이사항</label>
+                                <textarea id="notes" name="notes" rows="3">예: 미등기, 전입불가, 근저당 말소조건 등</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="button-danger full-width large">워크로 건펌 요청 쓰기</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </aside>
-        <main class="main-content">
-            <section id="contract" class="content-section active">
-                 <header class="main-header">
-                    <h1><i data-lucide="file-text"></i> 계약정산</h1>
-                </header>
-                <div class="content">
-                    <div class="tab-nav">
-                        <button class="tab-button active" data-tab="settlement-view">정산내역 조회/수정</button>
-                        <button class="tab-button" data-tab="settlement-entry">정산내역 입력</button>
-                        <button class="tab-button" data-tab="monthly-stats">월별 통계</button>
-                        <button class="tab-button" data-tab="team-stats">팀원별 통계</button>
-                    </div>
-
-                    <div id="settlement-view" class="tab-content active">
-                        <h3>📋 정산내역 조회/수정</h3>
-                        <div class="card">
-                            <div class="list-header">
-                                <div>계약일</div>
-                                <div>주소</div>
-                                <div>유형</div>
-                                <div>수수료</div>
-                                <div>담당자</div>
-                                <div>작업</div>
-                            </div>
-                            <div id="settlement-list-container"></div>
-                        </div>
-                    </div>
-
-                    <div id="settlement-entry" class="tab-content">
-                        <h3>✍️ 정산내역 입력</h3>
-                        <div class="card form-layout">
-                            <form id="settlement-entry-form">
-                                <div class="grid-2">
-                                    <div class="form-group"><label>계약일</label><input type="date" name="contract_date"></div>
-                                    <div class="form-group"><label>주소</label><input type="text" name="address"></div>
-                                </div>
-                                <div class="grid-3">
-                                    <div class="form-group">
-                                        <label>계약 종류</label>
-                                        <select name="contract_type"><option>매매</option><option>전세</option><option>월세</option></select>
-                                    </div>
-                                    <div class="form-group"><label>수수료 (만원)</label><input type="number" name="commission"></div>
-                                    <div class="form-group">
-                                        <label>담당자</label>
-                                        <select name="manager"></select>
-                                    </div>
-                                </div>
-                                <button type="submit" class="button-primary full-width">저장하기</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div id="monthly-stats" class="tab-content">
-                        <h3>📊 월별 통계</h3>
-                        <div class="card">
-                            <form id="monthly-stats-form" class="form-layout-inline">
-                                <div class="form-group"><label>조회 년도</label><select name="stats_year"></select></div>
-                                <div class="form-group"><label>조회 월</label><select name="stats_month"></select></div>
-                                <button type="submit" class="button-primary">통계 조회</button>
-                            </form>
-                            <div id="stats-summary-container" class="grid-3" style="margin-top: 1.5rem;"></div>
-                            <div id="monthly-stats-table-container" style="margin-top: 1.5rem;"></div>
-                        </div>
-                    </div>
-
-                    <div id="team-stats" class="tab-content">
-                        <h3>🏆 팀원별 실적 순위</h3>
-                         <div class="card">
-                            <form id="team-stats-form" class="form-layout-inline">
-                               <div class="form-group"><label>조회 년도</label><select name="team_stats_year"></select></div>
-                                <div class="form-group"><label>조회 월</label><select name="team_stats_month"></select></div>
-                                <button type="submit" class="button-primary">순위 조회</button>
-                            </form>
-                            <div id="leaderboard" style="margin-top: 1.5rem;"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
     </div>
     <script src="contract.js"></script>
